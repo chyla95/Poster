@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { addPost } from "../../services/posts";
 import styles from "./AddPost.module.css";
 
 function AddPost(props) {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const onUsernameChangeHandler = (event) => {
     const value = event.target.value;
@@ -25,7 +27,8 @@ function AddPost(props) {
     };
 
     await addPost(data);
-    props.onSubmit();
+    navigate("/");
+    if (props.onSubmit) props.onSubmit();
   };
 
   return (

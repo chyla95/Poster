@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (service) => {
+const useService = (service) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,4 +19,4 @@ const useFetch = (service) => {
   return { data, isLoading };
 };
 
-export default useFetch;
+export default useService;

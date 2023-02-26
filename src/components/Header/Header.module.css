@@ -10,11 +10,25 @@
 }
 
 .logo {
+  text-decoration: none;
+}
+
+.logo > h1 {
   font-size: 2rem;
   display: flex;
   gap: 1.5rem;
   align-items: center;
   color: #ece1fa;
+  cursor: pointer;
+}
+
+.logo-active > h1 {
+  text-decoration: underline;
+  text-decoration-color: #ece1fa;
+}
+
+.logo > h1:hover {
+  color: #a990fb;
 }
 
 .button {

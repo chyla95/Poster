@@ -45,7 +45,7 @@ setupMockData();
 
 // Mock service functions
 export const getPosts = async () => {
-  await delay(1000); // 1s delay, to simulate real HTTP request
+  await delay(200); // .2s delay, to simulate real HTTP request
 
   console.log(`Service "getPosts" triggered!`);
   const data = JSON.parse(localStorage.getItem("posts-mock"));
@@ -53,15 +53,16 @@ export const getPosts = async () => {
 };
 
 export const getPost = async (id) => {
-  await delay(1000); // 1s delay, to simulate real HTTP request
+  await delay(200); // .2s delay, to simulate real HTTP request
 
   console.log(`Service "getPost" triggered!`);
   const data = JSON.parse(localStorage.getItem("posts-mock"));
-  return data.find((p) => p.id === id);
+
+  return data.find((p) => p.id == id);
 };
 
 export const addPost = async (post) => {
-  await delay(1000); // 1s delay, to simulate real HTTP request
+  await delay(200); // .2s delay, to simulate real HTTP request
 
   console.log(`Service "addPost" triggered!`);
   const data = JSON.parse(localStorage.getItem("posts-mock"));
