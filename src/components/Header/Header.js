@@ -1,4 +1,4 @@
-import { MdPostAdd, MdMessage } from "react-icons/md";
+import { MdLogin, MdMessage } from "react-icons/md";
 
 import classes from "./Header.module.css";
 
@@ -10,9 +10,9 @@ function Header(props) {
         Poster
       </h1>
       <p>
-        <button className={classes.button} onClick={props.showAddPostModal}>
-          <MdPostAdd size={18} />
-          Add Post
+        <button className={classes.button} onClick={() => console.log("...")}>
+          <MdLogin size={18} />
+          Log In
         </button>
       </p>
     </header>
