@@ -10,6 +10,8 @@ import classes from "./Header.module.css";
 
 function Header(props) {
   const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [isAuthenticationModalVisible, setIsAuthenticationModalVisible] =
     useState(false);
@@ -50,13 +52,13 @@ function Header(props) {
         {!token && (
           <button className={classes.button} onClick={showAuthenticationModal}>
             <MdLogin size={18} />
-            Sign In
+            SignIn
           </button>
         )}
-        {token && (
+        {token && user && (
           <button className={classes.button} onClick={signOutHandler}>
             <MdLogout size={18} />
-            Sign out
+            <p>SignOut - {user.username}</p>
           </button>
         )}
       </p>

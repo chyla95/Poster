@@ -6,14 +6,8 @@ import styles from "./AddPost.module.css";
 
 function AddPost(props) {
   const { token } = useSelector((state) => state.auth);
-  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
-  const onUsernameChangeHandler = (event) => {
-    const value = event.target.value;
-    setUsername(value);
-  };
 
   const onMessageChangeHandler = (event) => {
     const value = event.target.value;
@@ -24,7 +18,6 @@ function AddPost(props) {
     event.preventDefault();
 
     const data = {
-      author: username,
       message,
     };
 
@@ -39,6 +32,7 @@ function AddPost(props) {
       <div>
         <label htmlFor="message">Message</label>
         <textarea
+          autoFocus
           id="message"
           required
           rows={3}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signIn } from "../services/authentication";
+import { getUser, signIn } from "../services/authentication";
+import { userActions } from "./user-slice";
 
 const initialState = {
   token: localStorage.getItem("token") || null,
@@ -32,6 +33,9 @@ export const authenticateActionCreator = (data) => {
     // We can call multiple dispatch functions from the ActionCreator;
     // We can also dispatch functions from other slices!
     dispatch(authActions.authenticate({ token: response.token }));
+
+    const user = await getUser(response.token);
+    dispatch(userActions.update(user));
   };
 };
 

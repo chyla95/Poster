@@ -2,14 +2,14 @@ import { Outlet, useLoaderData } from "react-router";
 import Header from "../components/Header/Header";
 import { getUser } from "../services/authentication";
 import store from "../store/store";
+import { userActions } from "../store/user-slice";
 
 const RootLayout = (props) => {
-  const { user } = useLoaderData();
   return (
     <>
       <Header />
       <main>
-        <Outlet context={{ user: user }} />
+        <Outlet />
       </main>
     </>
   );
@@ -19,10 +19,10 @@ export default RootLayout;
 
 export const rootLoader = async () => {
   const { auth } = store.getState();
-  // store.dispatch(...)
+  if (!auth.token) return null;
 
   const user = await getUser(auth.token);
-  console.log("...", user);
+  store.dispatch(userActions.update(user));
 
   return { user };
 };

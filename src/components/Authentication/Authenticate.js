@@ -61,7 +61,7 @@ function Authenticate(props) {
         />
       </div>
       <div className={`${styles["actions"]}`}>
-        <button>Sign In</button>
+        <button autoFocus>Sign In</button>
       </div>
     </form>
   );
