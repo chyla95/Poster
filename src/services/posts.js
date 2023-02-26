@@ -1,3 +1,5 @@
+import { getUser } from "./authentication";
+
 // Helper functions
 const delay = async (timeout) => {
   await new Promise((resolve) => setTimeout(resolve, timeout));
@@ -61,12 +63,22 @@ export const getPost = async (id) => {
   return data.find((p) => p.id == id);
 };
 
-export const addPost = async (post) => {
+export const addPost = async (post, token) => {
   await delay(200); // .2s delay, to simulate real HTTP request
+
+  const userData = await getUser(token);
+  console.log(userData);
 
   console.log(`Service "addPost" triggered!`);
   const data = JSON.parse(localStorage.getItem("posts-mock"));
-  const formattedPost = { id: getNextId(), ...post };
+  const formattedPost = {
+    id: getNextId(),
+    ...post,
+    author: userData.username,
+  };
+
+  console.log(formattedPost);
+
   localStorage.setItem("posts-mock", JSON.stringify([...data, formattedPost]));
 
   return formattedPost;

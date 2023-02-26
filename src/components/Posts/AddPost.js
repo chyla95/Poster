@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { addPost } from "../../services/posts";
 import styles from "./AddPost.module.css";
 
 function AddPost(props) {
+  const { token } = useSelector((state) => state.auth);
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ function AddPost(props) {
       message,
     };
 
-    await addPost(data);
+    await addPost(data, token);
     navigate("/");
     if (props.onSubmit) props.onSubmit();
   };
@@ -34,16 +36,6 @@ function AddPost(props) {
   return (
     <form className={styles["form"]} onSubmit={onSubmitHandler}>
       <h2>Add Post</h2>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          required
-          onChange={onUsernameChangeHandler}
-          value={username}
-        />
-      </div>
       <div>
         <label htmlFor="message">Message</label>
         <textarea

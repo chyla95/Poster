@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./layouts/RootLayout";
+import RootLayout, { rootLoader } from "./layouts/RootLayout";
 import PostPage, { postLoader } from "./pages/PostPage";
 import PostsPage, { postsLoader } from "./pages/PostsPage";
 
@@ -7,6 +7,7 @@ const routes = [
   {
     path: "/",
     element: <RootLayout />,
+    loader: rootLoader,
     children: [
       { path: "/", element: <PostsPage />, loader: postsLoader },
       { path: "/post/:postId", element: <PostPage />, loader: postLoader },
