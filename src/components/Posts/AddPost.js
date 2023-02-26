@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addPost } from "../../services/posts";
 import styles from "./AddPost.module.css";
 
 function AddPost(props) {
@@ -15,15 +16,15 @@ function AddPost(props) {
     setMessage(value);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
 
     const data = {
-      username,
+      author: username,
       message,
     };
 
-    console.log(data);
+    await addPost(data);
     props.onSubmit();
   };
 

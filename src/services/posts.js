@@ -9,7 +9,7 @@ const getNextId = () => {
 };
 
 // Mock data
-const POSTS_MOCK = [
+let POSTS_MOCK = [
   {
     id: 0,
     author: "Steven O",
@@ -29,7 +29,7 @@ const POSTS_MOCK = [
   },
   {
     id: 3,
-    author: "Melvin R",
+    author: "Malvin S",
     message:
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
@@ -39,18 +39,21 @@ const POSTS_MOCK = [
 export const getPosts = async () => {
   await delay(1000); // 1s delay, to simulate real HTTP request
 
+  console.log(`Service "getPosts" triggered!`);
   return POSTS_MOCK;
 };
 
 export const getPost = async (id) => {
   await delay(1000); // 1s delay, to simulate real HTTP request
 
+  console.log(`Service "getPost" triggered!`);
   return POSTS_MOCK.find((p) => p.id === id);
 };
 
 export const addPost = async (post) => {
   await delay(1000); // 1s delay, to simulate real HTTP request
 
+  console.log(`Service "addPost" triggered!`);
   const formattedPost = { id: getNextId(), ...post };
   POSTS_MOCK.push(formattedPost);
   return formattedPost;
